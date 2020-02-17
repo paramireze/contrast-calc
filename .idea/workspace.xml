@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="03c5c459-9bab-48a2-acb1-84bca4a3d3ef" name="Default Changelist" comment="" />
+    <list default="true" id="03c5c459-9bab-48a2-acb1-84bca4a3d3ef" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/application.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/layout/navigation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/about.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/about.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/calculation-details.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/calculation-details.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +20,9 @@
       <executable />
     </execution>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4" />
   <component name="ProjectId" id="1XgjMXcJI2ZNefqvDajKIbLy6Hb" />
   <component name="ProjectViewState">
@@ -21,6 +32,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/css" />
@@ -64,7 +76,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581474583892</updated>
-      <workItem from="1581474585656" duration="15392000" />
+      <workItem from="1581474585656" duration="17802000" />
     </task>
     <servers />
   </component>
@@ -76,13 +88,17 @@
       <screen x="0" y="23" width="1680" height="898" />
     </state>
     <state x="504" y="62" key="#PHP/0.23.1680.898@0.23.1680.898" timestamp="1581475073405" />
+    <state x="567" y="282" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581908208586">
+      <screen x="0" y="23" width="1680" height="898" />
+    </state>
+    <state x="567" y="282" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.898@0.23.1680.898" timestamp="1581908208586" />
     <state x="915" y="241" width="689" height="462" key="find.popup" timestamp="1581474645743">
       <screen x="0" y="23" width="1680" height="898" />
     </state>
     <state x="915" y="241" width="689" height="462" key="find.popup/0.23.1680.898@0.23.1680.898" timestamp="1581474645743" />
-    <state x="85" y="218" width="670" height="676" key="search.everywhere.popup" timestamp="1581623230525">
+    <state x="85" y="218" width="670" height="676" key="search.everywhere.popup" timestamp="1581907008322">
       <screen x="0" y="23" width="1680" height="898" />
     </state>
-    <state x="85" y="218" width="670" height="676" key="search.everywhere.popup/0.23.1680.898@0.23.1680.898" timestamp="1581623230525" />
+    <state x="85" y="218" width="670" height="676" key="search.everywhere.popup/0.23.1680.898@0.23.1680.898" timestamp="1581907008322" />
   </component>
 </project>

@@ -12,6 +12,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="<?php echo root_http_path(); ?>/index.php?show=about">About <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">Calculation Details <span class="caret"></span></a>
+                    <div class="dropdown-menu" aria-labelledby="download">
+                        <a class="dropdown-item" href="<?php echo root_http_path(); ?>/index.php?show=site-rules">Site Rules</a>
+                        <a class="dropdown-item" href="<?php echo root_http_path(); ?>/index.php?show=debug">Debug</a>
+                        <a class="dropdown-item" href="<?php echo root_http_path(); ?>/index.php?show=protocols">Protocols</a>
+                        <a class="dropdown-item" href="<?php echo root_http_path(); ?>/index.php?show=size-images">Size Images</a>
+                        <a class="dropdown-item" href="<?php echo root_http_path(); ?>/index.php?show=weight-to-volume">Weight to Volume</a>
+                        <a class="dropdown-item" href="<?php echo root_http_path(); ?>/index.php?show=mappings">Mappings</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

@@ -25,11 +25,46 @@
 
             switch ($_GET['show']) {
 
-                case 'calculation-details':
+                case 'site-rules':
 
-                    $page_title = 'Site Rules & Other Details';
+                    $page_title = 'Site Rules';
                     $page_description = '';
-                    $file_path = 'site/calculation-details.php';
+                    $file_path = 'site/site-rules.php';
+                    break;
+
+                case 'debug':
+
+                    $page_title = 'Debug';
+                    $page_description = '';
+                    $file_path = 'site/debug.php';
+                    break;
+
+                case 'protocols':
+
+                    $page_title = 'Protocols';
+                    $page_description = '';
+                    $file_path = 'site/protocols.php';
+                    break;
+
+                case 'size-images':
+
+                    $page_title = 'Size Images';
+                    $page_description = '';
+                    $file_path = 'site/size-images.php';
+                    break;
+
+                case 'weight-to-volume':
+
+                    $page_title = 'Weight to Volume';
+                    $page_description = '';
+                    $file_path = 'site/weight-to-volume.php';
+                    break;
+
+                case 'mappings':
+
+                    $page_title = 'Mappings';
+                    $page_description = '';
+                    $file_path = 'site/mappings.php';
                     break;
 
                 case 'about':
@@ -56,12 +91,13 @@
                         <p><?php echo $page_description; ?></p>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-5">
-                        <div class="sponsor">
-                            <a href="https://github.com/paramireze/contrast-calc"><img src="images/Octocat.jpg"></a>
-                        </div>
+<!--                        <div class="sponsor">-->
+<!--                            <a href="https://github.com/paramireze/contrast-calc"><img src="images/Octocat.jpg"></a>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
+
             <?php include($file_path); ?>
         </div>
 
