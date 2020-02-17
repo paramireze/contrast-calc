@@ -1,5 +1,11 @@
 {
-    "require": {
-        "monolog/monolog": "1.0.*"
-    }
+    "name": "vendor/name",
+    "description": "no description",
+    "authors": [
+        {
+            "name": "paramireze",
+            "email": "paramireze@gmail.com"
+        }
+    ],
+    "require": {}
 }
