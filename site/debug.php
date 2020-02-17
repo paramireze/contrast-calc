@@ -1,10 +1,5 @@
 <table class="table table-bordered">
     <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr>
         <td style="width:500px;">volume we calculate (may not actually be displayed based on user siterules</td>
         <td>##</td>
         <td>=IF( VLOOKUP( ConCal!A8,Protocols!A6:D100,4,FALSE)=1,<br />

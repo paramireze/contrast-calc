@@ -6,12 +6,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo root_http_path(); ?>/index.php?show=calculation-details">Calculation Details <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo root_http_path(); ?>/index.php?show=about">About <span class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">Calculation Details <span class="caret"></span></a>
                     <div class="dropdown-menu" aria-labelledby="download">
@@ -23,6 +17,9 @@
                         <a class="dropdown-item" href="<?php echo root_http_path(); ?>/index.php?show=mappings">Mappings</a>
                         <div class="dropdown-divider"></div>
                     </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?php echo root_http_path(); ?>/index.php?show=about">About <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
