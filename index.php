@@ -18,7 +18,7 @@
         include 'functions/calculations.php';
 
         $page_title = 'Contrast Calculator';
-        $page_description = "Tim Stick production under construction";
+        $page_description = "";
         $file_path = 'site/introduction.php';
 
         if (!empty($_GET['show'])) {

@@ -1,17 +1,52 @@
+<?php
+$protocol_name = isset($_GET['protocol_name']) ? $_GET['protocol_name'] : null;
+
+function get_chaser_volume($protocol_name) {
+    if (is_adult_abdomen_pelvis_selected($protocol_name)) {
+        return 50;
+    } elseif (is_pediatric_abdomen_pelvis_selected($protocol_name)) {
+        return 30;
+    } elseif (is_angio_protocol_selected($protocol_name)) {
+        return 60;
+    } elseif (is_washington_abdomen_selected($protocol_name)) {
+        return 50;
+    } else {
+        return '';
+    }
+}
+
+function is_adult_abdomen_pelvis_selected($protocol_name) {
+    return $protocol_name === 'adult_abdomen_pelvis';
+}
+
+function is_pediatric_abdomen_pelvis_selected($protocol_name) {
+    return $protocol_name === 'pediatric_abdomen_pelvis';
+}
+
+function is_angio_protocol_selected($protocol_name) {
+    return $protocol_name === 'angio_protocol';
+}
+
+function is_washington_abdomen_selected($protocol_name) {
+    return $protocol_name === 'washington_abdomen';
+}
+
+?>
+
 <div class="row">
     <div class="col-lg-5">
         <form>
             <fieldset>
                 <div class="form-group">
                     <label for="protocol_name">Protocol Name</label>
-                    <select class="form-control" id="protocol_name">
-                        <option>Routine Adult Abdomen/Pelvis</option>
-                        <option>Routine Pediatric Abdomen/Pelvis</option>
-                        <option>Weight Based Angio Protocols</option>
-                        <option>U Washington Abdomen</option>
+                    <select class="form-control" id="protocol_name" onchange="location = this.value;">
+                        <option value="index.php">- select -</option>
+                        <option value="index.php?protocol_name=adult_abdomen_pelvis" <?php echo is_adult_abdomen_pelvis_selected($protocol_name) ? ' selected ' : '' ?>>Routine Adult Abdomen/Pelvis</option>
+                        <option value="index.php?protocol_name=pediatric_abdomen_pelvis" <?php echo is_pediatric_abdomen_pelvis_selected($protocol_name) ? ' selected ' : '' ?>>Routine Pediatric Abdomen/Pelvis</option>
+                        <option value="index.php?protocol_name=angio_protocol" <?php echo is_angio_protocol_selected($protocol_name)  ? ' selected ' : '' ?>>Weight Based Angio Protocols</option>
+                        <option value="index.php?protocol_name=washington_abdomen" <?php echo is_washington_abdomen_selected($protocol_name)  ? ' selected ' : '' ?>>U Washington Abdomen</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="patient_weight">Patient Weight</label>
                     <input type="text" class="form-control" id="patient_weight" aria-describedby="patientWeight" placeholder="">
@@ -63,7 +98,7 @@
             <div class="card  bg-light mb-1 float-left" style="width: 12rem; height:175px; margin-right:5px;">
                 <div class="card-header">Chaser Volume</div>
                 <div class="card-body">
-                    <h4 class="card-title">60</h4>
+                    <h4 class="card-title"><?php echo get_chaser_volume($protocol_name); ?></h4>
                 </div>
                 <div class="card-footer">ml or cc</div>
             </div>
