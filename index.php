@@ -19,7 +19,7 @@
 
         $page_title = 'Contrast Calculator';
         $page_description = "";
-        $file_path = 'site/introduction.php';
+        $file_path = 'site/calculator.php';
 
         if (!empty($_GET['show'])) {
 
