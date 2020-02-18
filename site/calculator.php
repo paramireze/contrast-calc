@@ -1,35 +1,10 @@
 <?php
-$protocol_name = isset($_GET['protocol_name']) ? $_GET['protocol_name'] : null;
+$protocol_id = isset($_GET['protocol_id']) && (int)$_GET['protocol_id'] > 0 && (int)$_GET['protocol_id'] < 5 ? $_GET['protocol_id'] : null;
 
-function get_chaser_volume($protocol_name) {
-    if (is_adult_abdomen_pelvis_selected($protocol_name)) {
-        return 50;
-    } elseif (is_pediatric_abdomen_pelvis_selected($protocol_name)) {
-        return 30;
-    } elseif (is_angio_protocol_selected($protocol_name)) {
-        return 60;
-    } elseif (is_washington_abdomen_selected($protocol_name)) {
-        return 50;
-    } else {
-        return '';
-    }
-}
-
-function is_adult_abdomen_pelvis_selected($protocol_name) {
-    return $protocol_name === 'adult_abdomen_pelvis';
-}
-
-function is_pediatric_abdomen_pelvis_selected($protocol_name) {
-    return $protocol_name === 'pediatric_abdomen_pelvis';
-}
-
-function is_angio_protocol_selected($protocol_name) {
-    return $protocol_name === 'angio_protocol';
-}
-
-function is_washington_abdomen_selected($protocol_name) {
-    return $protocol_name === 'washington_abdomen';
-}
+$protocols[1] = array('name' => 'adult_abdomen_pelvis', 'volume' => 50);
+$protocols[2] = array('name' => 'pediatric_abdomen_pelvis', 'volume' => 30);
+$protocols[3] = array('name' => 'angio_protocol', 'volume' => 60);
+$protocols[4] = array('name' => 'washington_abdomen', 'volume' => 50);
 
 ?>
 
@@ -41,10 +16,11 @@ function is_washington_abdomen_selected($protocol_name) {
                     <label for="protocol_name">Protocol Name</label>
                     <select class="form-control" id="protocol_name" onchange="location = this.value;">
                         <option value="index.php">- select -</option>
-                        <option value="index.php?protocol_name=adult_abdomen_pelvis" <?php echo is_adult_abdomen_pelvis_selected($protocol_name) ? ' selected ' : '' ?>>Routine Adult Abdomen/Pelvis</option>
-                        <option value="index.php?protocol_name=pediatric_abdomen_pelvis" <?php echo is_pediatric_abdomen_pelvis_selected($protocol_name) ? ' selected ' : '' ?>>Routine Pediatric Abdomen/Pelvis</option>
-                        <option value="index.php?protocol_name=angio_protocol" <?php echo is_angio_protocol_selected($protocol_name)  ? ' selected ' : '' ?>>Weight Based Angio Protocols</option>
-                        <option value="index.php?protocol_name=washington_abdomen" <?php echo is_washington_abdomen_selected($protocol_name)  ? ' selected ' : '' ?>>U Washington Abdomen</option>
+                        <?php
+                        foreach ($protocols as $key=>$value) {
+                            $selected = $key == $protocol_id ? ' selected ' : "";
+                            echo '<option value="index.php?protocol_id=' . $key . '" ' . $selected . '>' . $value['name'] . '</option>';
+                        } ?>
                     </select>
                 </div>
                 <div class="form-group">
@@ -98,7 +74,7 @@ function is_washington_abdomen_selected($protocol_name) {
             <div class="card  bg-light mb-1 float-left" style="width: 12rem; height:175px; margin-right:5px;">
                 <div class="card-header">Chaser Volume</div>
                 <div class="card-body">
-                    <h4 class="card-title"><?php echo get_chaser_volume($protocol_name); ?></h4>
+                    <h4 class="card-title"><?php echo !empty($protocols) ? $protocols[$protocol_id]['volume'] : "" ?></h4>
                 </div>
                 <div class="card-footer">ml or cc</div>
             </div>
