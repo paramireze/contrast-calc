@@ -74,7 +74,7 @@ $protocols[4] = array('name' => 'washington_abdomen', 'volume' => 50);
             <div class="card  bg-light mb-1 float-left" style="width: 12rem; height:175px; margin-right:5px;">
                 <div class="card-header">Chaser Volume</div>
                 <div class="card-body">
-                    <h4 class="card-title"><?php echo !empty($protocols) ? $protocols[$protocol_id]['volume'] : "" ?></h4>
+                    <h4 class="card-title"><?php echo !empty($protocols) && !empty($protocol_id) ? $protocols[$protocol_id]['volume'] : "" ?></h4>
                 </div>
                 <div class="card-footer">ml or cc</div>
             </div>
