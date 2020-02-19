@@ -90,10 +90,14 @@
                         <h1><?php echo $page_title ?></h1>
                         <p><?php echo $page_description; ?></p>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-5">
-<!--                        <div class="sponsor">-->
-<!--                            <a href="https://github.com/paramireze/contrast-calc"><img src="images/Octocat.jpg"></a>-->
-<!--                        </div>-->
+                    <div class="col-lg-3 col-md-4 col-sm-5"><?php
+
+                        if (isset($_GET['show']) && $_GET['show'] === 'about') { ?>
+                            <div class="sponsor">
+                                <a href="https://github.com/paramireze/contrast-calc"><img src="images/Octocat.jpg"></a>
+                            </div><?php
+                        } ?>
+
                     </div>
                 </div>
             </div>
