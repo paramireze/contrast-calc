@@ -10,26 +10,27 @@ $protocols[4] = array('name' => 'washington_abdomen', 'volume' => 50);
 
 <div class="row">
     <div class="col-lg-5">
-        <form>
+        <form action="<?php echo root_http_path(); ?>/index.php" id="calculate_volume" method="get">
             <fieldset>
                 <div class="form-group">
                     <label for="protocol_name">Protocol Name</label>
-                    <select class="form-control" id="protocol_name" onchange="location = this.value;">
-                        <option value="index.php">- select -</option>
+                    <select name="protocol_id" class="form-control" id="protocol_name" onchange="this.form.submit()">
+                        <option>- select -</option>
                         <?php
                         foreach ($protocols as $key=>$value) {
                             $selected = $key == $protocol_id ? ' selected ' : "";
-                            echo '<option value="index.php?protocol_id=' . $key . '" ' . $selected . '>' . $value['name'] . '</option>';
+                            echo '<option value="' . $key . '" ' . $selected . '>' . $value['name'] . '</option>';
                         } ?>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="patient_weight">Patient Weight</label>
-                    <input type="text" class="form-control" id="patient_weight" aria-describedby="patientWeight" placeholder="">
+                    <?php $patient_weight = isset($_GET['patient_weight']) && !empty($_GET['patient_weight']) ? round($_GET['patient_weight']) : 0; ?>
+                    <input type="text" class="form-control" id="patient_weight" name="patient_weight"  value="<?php echo $patient_weight; ?>" aria-describedby="patient_weight" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for="concentration">Concentration</label>
-                    <select class="form-control" id="concentration">
+                    <select class="form-control" name="concentration" id="concentration" onchange="calculate_weight(this.value);">
                         <option>300</option>
                         <option>320</option>
                         <option>350</option>
