@@ -1,12 +1,25 @@
 <?php
 $protocol_id = isset($_GET['protocol_id']) && (int)$_GET['protocol_id'] > 0 && (int)$_GET['protocol_id'] < 5 ? $_GET['protocol_id'] : null;
+$patient_weight = isset($_GET['patient_weight']) && !empty($_GET['patient_weight']) ? round($_GET['patient_weight']) : 0;
 
-$protocols[1] = array('name' => 'adult_abdomen_pelvis', 'volume' => 50);
-$protocols[2] = array('name' => 'pediatric_abdomen_pelvis', 'volume' => 30);
-$protocols[3] = array('name' => 'angio_protocol', 'volume' => 60);
-$protocols[4] = array('name' => 'washington_abdomen', 'volume' => 50);
+$protocols[1] = array('name' => 'adult_abdomen_pelvis', 'volume' => 50, 'look_up_table_id' => 1);
+//$protocols[2] = array('name' => 'pediatric_abdomen_pelvis', 'volume' => 30, 'look_up_table_id' => 2);
+//$protocols[3] = array('name' => 'angio_protocol', 'volume' => 60, 'look_up_table_id' => 3);
+//$protocols[4] = array('name' => 'washington_abdomen', 'volume' => 50, 'look_up_table_id' => 4);
 
-?>
+$selected_protocol = !empty($protocol_id) ? $protocols[$protocol_id] : null;
+
+$volume = null;
+$max_weight = null;
+$max_weight_text = null;
+
+if (!empty($protocol_id)) {
+    $look_up_table = get_look_up_table($selected_protocol['look_up_table_id']);
+    $protocol = $look_up_table[$patient_weight];
+    $max_weight = count($look_up_table) - 1;
+    $max_weight_text = 'Max Weight: ' . $max_weight;
+    $volume = round($protocol['volume']);
+} ?>
 
 <div class="row">
     <div class="col-lg-5">
@@ -25,8 +38,8 @@ $protocols[4] = array('name' => 'washington_abdomen', 'volume' => 50);
                 </div>
                 <div class="form-group">
                     <label for="patient_weight">Patient Weight</label>
-                    <?php $patient_weight = isset($_GET['patient_weight']) && !empty($_GET['patient_weight']) ? round($_GET['patient_weight']) : 0; ?>
                     <input type="text" class="form-control" id="patient_weight" name="patient_weight"  value="<?php echo $patient_weight; ?>" aria-describedby="patient_weight" placeholder="">
+                    <small class="form-text text-muted"><?php echo $max_weight_text ?></small>
                 </div>
                 <div class="form-group">
                     <label for="concentration">Concentration</label>
@@ -67,7 +80,7 @@ $protocols[4] = array('name' => 'washington_abdomen', 'volume' => 50);
             <div class="card bg-light mb-1 float-left" style="width: 12rem;height:175px; margin-right:5px;">
                 <div class="card-header">Contrast Volume</div>
                 <div class="card-body">
-                    <h4 class="card-title">87</h4>
+                    <h4 class="card-title"><?php echo $volume; ?></h4>
                 </div>
                 <div class="card-footer">ml or cc</div>
             </div>

@@ -20,6 +20,16 @@ function get_lookup_table_one() {
   return $lookup_table_one;
 }
 
+function get_look_up_table($look_up_table_id) {
+
+    switch ($look_up_table_id) {
+        case 1:
+            return get_lookup_table_one();
+        default:
+            return null;
+    }
+}
+
 function get_lookup_table_two() {
 
     $lookup_table_two = array();
