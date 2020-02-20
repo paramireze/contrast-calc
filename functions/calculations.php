@@ -1,23 +1,24 @@
 <?php
-  function get_lookup_table_one() {
 
-      $lookup_table_one = array();
+function get_lookup_table_one() {
 
-      for($i = 0; $i <= 400; $i++ ) {
+  $lookup_table_one = array();
 
-          $lbs = $i;
+  for($i = 0; $i <= 400; $i++ ) {
 
-          if ($lbs < 131) {
-              $volume = 80;
-          } else {
-              $volume = get_volume($lbs);
-          }
+      $lbs = $i;
 
-          $lookup_table_one[] = array('lbs' => $lbs, 'kgs' => convert_lbs_to_kgs($lbs), 'volume' => $volume);
+      if ($lbs < 131) {
+          $volume = 80;
+      } else {
+          $volume = get_volume($lbs);
       }
 
-      return $lookup_table_one;
+      $lookup_table_one[$lbs] = array('kgs' => convert_lbs_to_kgs($lbs), 'volume' => $volume);
   }
+
+  return $lookup_table_one;
+}
 
 function get_lookup_table_two() {
 
