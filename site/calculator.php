@@ -12,16 +12,15 @@ $protocol = !empty($protocol_id) ? $protocols[$protocol_id] : null;
 $volume = null;
 $max_weight = null;
 $max_weight_text = null;
-$is_weight_unit_kgs = isset($_GET['weight_unit']) && $_GET['weight_unit'] === 'kgs';
+$is_weight_unit_kgs = is_weight_unit_kgs($_GET['weight_unit']);
 
 if (!empty($protocol_id)) {
 
-
     $look_up_table = get_look_up_table($protocol);
-    $data_row = $look_up_table[round($patient_weight)];
+    $look_up_row = get_row_from_table($look_up_table, $patient_weight, $is_weight_unit_kgs);
     $max_weight = count($look_up_table) - 1;
-    $max_weight_text = 'Max Weight: ' . $max_weight;
-    $volume = round($data_row['volume']);
+    $max_weight_text = 'Max Weight: ' . $max_weight . ' lbs or ' . $look_up_table[$max_weight]['kgs'] . ' kgs' ;
+    $volume = round($look_up_row['volume']);
 } ?>
 
 <div class="row">

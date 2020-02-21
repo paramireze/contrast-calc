@@ -31,8 +31,8 @@ function is_a_number(input) {
 }
 
 function convert_weight(weight, weight_unit){
-    var kg = 0.45359237
-    var results = ""
+    var kg = 0.45359237;
+    var results = "";
 
     if (weight_unit === "kgs") {
         result = weight * kg;
