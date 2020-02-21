@@ -1,6 +1,6 @@
 <?php
 $protocol_id = isset($_GET['protocol_id']) && (int)$_GET['protocol_id'] > 0 && (int)$_GET['protocol_id'] < 5 ? $_GET['protocol_id'] : null;
-$patient_weight = isset($_GET['patient_weight']) && !empty($_GET['patient_weight']) ? round($_GET['patient_weight']) : 0;
+$patient_weight = isset($_GET['patient_weight']) && !empty($_GET['patient_weight']) ? $_GET['patient_weight'] : 0;
 
 $protocols[1] = array('name' => 'adult_abdomen_pelvis', 'volume' => 50, 'look_up_table_id' => 1);
 //$protocols[2] = array('name' => 'pediatric_abdomen_pelvis', 'volume' => 30, 'look_up_table_id' => 2);
@@ -12,10 +12,11 @@ $selected_protocol = !empty($protocol_id) ? $protocols[$protocol_id] : null;
 $volume = null;
 $max_weight = null;
 $max_weight_text = null;
+$is_weight_unit_kgs = isset($_GET['weight_unit']) && $_GET['weight_unit'] === 'kgs';
 
 if (!empty($protocol_id)) {
     $look_up_table = get_look_up_table($selected_protocol['look_up_table_id']);
-    $protocol = $look_up_table[$patient_weight];
+    $protocol = $look_up_table[round($patient_weight)];
     $max_weight = count($look_up_table) - 1;
     $max_weight_text = 'Max Weight: ' . $max_weight;
     $volume = round($protocol['volume']);
@@ -62,12 +63,12 @@ if (!empty($protocol_id)) {
                     <label>Weight Units</label>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="weight_unit" id="" value="lbs" checked=""> lbs
+                            <input type="radio" class="form-check-input" name="weight_unit" id="" value="lbs" <?php echo !$is_weight_unit_kgs ? ' checked ' : ''; ?>> lbs
                         </label>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="weight_unit" id="" value="kg"> kg
+                            <input type="radio" class="form-check-input" name="weight_unit" id="" value="kgs" <?php echo $is_weight_unit_kgs ? ' checked ' : ''; ?>> kg
                         </label>
                     </div>
 
