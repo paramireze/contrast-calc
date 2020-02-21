@@ -7,7 +7,7 @@ $protocols[1] = array('name' => 'adult_abdomen_pelvis', 'volume' => 50, 'look_up
 //$protocols[3] = array('name' => 'angio_protocol', 'volume' => 60, 'look_up_table_id' => 3);
 //$protocols[4] = array('name' => 'washington_abdomen', 'volume' => 50, 'look_up_table_id' => 4);
 
-$selected_protocol = !empty($protocol_id) ? $protocols[$protocol_id] : null;
+$protocol = !empty($protocol_id) ? $protocols[$protocol_id] : null;
 
 $volume = null;
 $max_weight = null;
@@ -15,11 +15,13 @@ $max_weight_text = null;
 $is_weight_unit_kgs = isset($_GET['weight_unit']) && $_GET['weight_unit'] === 'kgs';
 
 if (!empty($protocol_id)) {
-    $look_up_table = get_look_up_table($selected_protocol['look_up_table_id']);
-    $protocol = $look_up_table[round($patient_weight)];
+
+
+    $look_up_table = get_look_up_table($protocol);
+    $data_row = $look_up_table[round($patient_weight)];
     $max_weight = count($look_up_table) - 1;
     $max_weight_text = 'Max Weight: ' . $max_weight;
-    $volume = round($protocol['volume']);
+    $volume = round($data_row['volume']);
 } ?>
 
 <div class="row">

@@ -20,9 +20,9 @@ function get_lookup_table_one() {
   return $lookup_table_one;
 }
 
-function get_look_up_table($look_up_table_id) {
+function get_look_up_table($protocol) {
 
-    switch ($look_up_table_id) {
+    switch ($protocol['look_up_table_id']) {
         case 1:
             return get_lookup_table_one();
         default:
@@ -54,10 +54,10 @@ function get_lookup_table_two() {
 }
 
 function convert_lbs_to_kgs($lbs) {
-      return $lbs * .453592;
+    return $lbs * .453592;
 }
 
 function get_volume($lbs) {
-      return (0.6114 * $lbs) + 0.1939;
+    return (0.6114 * $lbs) + 0.1939;
 }
 ?>
