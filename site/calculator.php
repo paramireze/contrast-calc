@@ -2,7 +2,7 @@
 $protocol_id = isset($_GET['protocol_id']) && (int)$_GET['protocol_id'] > 0 && (int)$_GET['protocol_id'] < 5 ? $_GET['protocol_id'] : null;
 $patient_weight = isset($_GET['patient_weight']) && !empty($_GET['patient_weight']) ? $_GET['patient_weight'] : 0;
 
-$protocols[1] = array('name' => 'adult_abdomen_pelvis', 'volume' => 50, 'look_up_table_id' => 1);
+$protocols[1] = array('name' => 'Adult Abdomen Pelvis', 'volume' => 50, 'look_up_table_id' => 1);
 //$protocols[2] = array('name' => 'pediatric_abdomen_pelvis', 'volume' => 30, 'look_up_table_id' => 2);
 //$protocols[3] = array('name' => 'angio_protocol', 'volume' => 60, 'look_up_table_id' => 3);
 //$protocols[4] = array('name' => 'washington_abdomen', 'volume' => 50, 'look_up_table_id' => 4);
@@ -52,12 +52,6 @@ if (!empty($protocol_id)) {
                         <option>370</option>
                     </select>
                     <small class="form-text text-muted">(mgl/cc or mgl/ml)</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="patient_weight">Scan Duration</label>
-                    <input type="text" class="form-control" id="scan_duration" aria-describedby="scanDuraction" placeholder="">
-                    <small class="form-text text-muted">Seconds</small>
                 </div>
 
                 <fieldset class="form-group">
