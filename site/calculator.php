@@ -12,15 +12,19 @@ $protocol = !empty($protocol_id) ? $protocols[$protocol_id] : null;
 $volume = null;
 $max_weight = null;
 $max_weight_text = null;
-$is_weight_unit_kgs = is_weight_unit_kgs($_GET['weight_unit']);
+
+$is_weight_unit_kgs = isset($_GET['weight_unit']) ? is_weight_unit_kgs($_GET['weight_unit']) : null;
 
 if (!empty($protocol_id)) {
 
     $look_up_table = get_look_up_table($protocol);
     $look_up_row = get_row_from_table($look_up_table, $patient_weight, $is_weight_unit_kgs);
-    $max_weight = count($look_up_table) - 1;
-    $max_weight_text = 'Max Weight: ' . $max_weight . ' lbs or ' . $look_up_table[$max_weight]['kgs'] . ' kgs' ;
+
+    $total_items = count($look_up_table) - 1;
+    $max_weight = $is_weight_unit_kgs ? $look_up_table[$total_items]['kgs'] : $total_items;
+    $unit = $is_weight_unit_kgs ? 'kgs' : 'lbs' ;
     $volume = round($look_up_row['volume']);
+
 } ?>
 
 <div class="row">
@@ -41,7 +45,7 @@ if (!empty($protocol_id)) {
                 <div class="form-group">
                     <label for="patient_weight">Patient Weight</label>
                     <input type="text" class="form-control" id="patient_weight" name="patient_weight"  value="<?php echo $patient_weight; ?>" aria-describedby="patient_weight" placeholder="">
-                    <small class="form-text text-muted"><?php echo $max_weight_text ?></small>
+                    <small id="weight_subtext" class="form-text text-muted">Max Weight: <span id="max_weight"><?php echo $max_weight; ?></span> <?php echo $unit; ?></small>
                 </div>
                 <div class="form-group">
                     <label for="concentration">Concentration</label>

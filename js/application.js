@@ -1,14 +1,18 @@
 $('input[name=patient_weight]').change(function(e) {
-
     var weight = e.target.value;
 
     if (!is_a_number(weight)) {
         alert('Numbers Only');
     } else {
+        var max_weight = Number($('#max_weight').text());
+        var patient_weight_div = $('#patient_weight');
+
         if (weight < 0) {
             alert('Weight has to not negative');
-        } else if (weight > 400) {
+            patient_weight_div.addClass('is-invalid');
+        } else if (weight > max_weight) {
             alert('weight cannot be over 400');
+            patient_weight_div.addClass('is-invalid');
         } else {
             $("#calculate_volume").submit();
         }
@@ -30,17 +34,9 @@ function is_a_number(input) {
     return input != null && !isNaN(input);
 }
 
-function convert_weight(weight, weight_unit){
+function convert_weight(weight, weight_unit) {
     var kg = 0.45359237;
-    var results = "";
-
-    if (weight_unit === "kgs") {
-        result = weight * kg;
-    } else {
-        result = weight / kg;
-    }
-
-    return result;
-};
+    return weight_unit === "kgs" ?  (weight * kg) : (weight / kg);
+}
 
 
