@@ -9,6 +9,7 @@ $protocols[1] = array('name' => 'Adult Abdomen Pelvis', 'volume' => 50, 'look_up
 
 $protocol = !empty($protocol_id) ? $protocols[$protocol_id] : null;
 
+$unit = null;
 $volume = null;
 $max_weight = null;
 $max_weight_text = null;
@@ -19,9 +20,9 @@ if (!empty($protocol_id)) {
 
     $look_up_table = get_look_up_table($protocol);
     $look_up_row = get_row_from_table($look_up_table, $patient_weight, $is_weight_unit_kgs);
-
     $total_items = count($look_up_table) - 1;
-    $max_weight = $is_weight_unit_kgs ? $look_up_table[$total_items]['kgs'] : $total_items;
+    $max_weight = $patient_weight && $is_weight_unit_kgs ? $look_up_table[$total_items]['kgs'] : $total_items;
+
     $unit = $is_weight_unit_kgs ? 'kgs' : 'lbs' ;
     $volume = round($look_up_row['volume']);
 
