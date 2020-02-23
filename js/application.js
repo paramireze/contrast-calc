@@ -10,8 +10,10 @@ $('input[name=patient_weight]').change(function(e) {
         if (weight < 0) {
             alert('Weight has to not negative');
             patient_weight_div.addClass('is-invalid');
+            $('#patient_weight').val("");
         } else if (weight > max_weight) {
             alert('weight cannot be over 400');
+            $('#patient_weight').val("");
             patient_weight_div.addClass('is-invalid');
         } else {
             $("#calculate_volume").submit();
