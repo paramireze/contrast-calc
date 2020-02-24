@@ -3,6 +3,7 @@
 function get_lookup_table_one() {
 
     $lookup_table_one = array();
+    $lookup_table_one['concentration_strength'] = 300;
 
     for($i = 0; $i <= 400; $i++ ) {
 
@@ -64,12 +65,33 @@ function get_row_from_table($look_up_table, $patient_weight, $is_weight_unit_kgs
     return $data_row;
 }
 
+function concentration_strength_options() {
+    return array(300, 320, 350, 370);
+}
+
 function convert_lbs_to_kgs($weight) {
     return $weight * .45359237;
 }
 
 function convert_kgs_to_lbs($weight) {
     return $weight / .45359237;
+}
+
+function calculate_volume_for_concentration_strength($volume, $concentration_strength, $default_concentration_strength) {
+    return $concentration_strength != $default_concentration_strength ? round($volume * ($default_concentration_strength / $concentration_strength)) : $volume;
+}
+
+function concentration_strength($concentration_strength, $default_concentration_strength) {
+
+    if (empty($concentration_strength)) {
+        $concentration_strength = $default_concentration_strength;
+    } else {
+        if (!in_array($concentration_strength, concentration_strength_options())) {
+            $concentration_strength = $default_concentration_strength;
+        }
+    }
+
+    return $concentration_strength;
 }
 
 function get_volume($lbs) {

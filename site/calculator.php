@@ -13,18 +13,25 @@ $unit = null;
 $volume = null;
 $max_weight = null;
 $max_weight_text = null;
-
 $is_weight_unit_kgs = isset($_GET['weight_unit']) ? is_weight_unit_kgs($_GET['weight_unit']) : null;
 
 if (!empty($protocol_id)) {
 
     $look_up_table = get_look_up_table($protocol);
     $look_up_row = get_row_from_table($look_up_table, $patient_weight, $is_weight_unit_kgs);
-    $total_items = count($look_up_table) - 1;
-    $max_weight = $patient_weight && $is_weight_unit_kgs ? $look_up_table[$total_items]['kgs'] : $total_items;
 
+    // All things Concentration Strength related
+    $default_concentration_strength = $look_up_table['concentration_strength'];
+    $concentration_strength_options = concentration_strength_options();
+    $concentration_strength = isset($_GET['concentration_strength']) ? $_GET['concentration_strength'] : null;
+    $concentration_strength = concentration_strength($concentration_strength, $default_concentration_strength);
+
+    $volume = calculate_volume_for_concentration_strength(round($look_up_row['volume']), $concentration_strength, $default_concentration_strength);
+
+    $total_items = count($look_up_table) - 2;
+    $max_weight = $patient_weight && $is_weight_unit_kgs ? $look_up_table[$total_items]['kgs'] : $total_items;
     $unit = $is_weight_unit_kgs ? 'kgs' : 'lbs' ;
-    $volume = round($look_up_row['volume']);
+
 
 } ?>
 
@@ -34,7 +41,7 @@ if (!empty($protocol_id)) {
             <fieldset>
                 <div class="form-group">
                     <label for="protocol_name">Protocol Name</label>
-                    <select name="protocol_id" class="form-control" id="protocol_name" onchange="this.form.submit()">
+                    <select name="protocol_id" class="form-control" id="protocol_name" onchange="this.form.submit();">
                         <option>- select -</option>
                         <?php
                         foreach ($protocols as $key=>$value) {
@@ -50,11 +57,12 @@ if (!empty($protocol_id)) {
                 </div>
                 <div class="form-group">
                     <label for="concentration">Concentration</label>
-                    <select class="form-control" name="concentration" id="concentration" onchange="calculate_weight(this.value);">
-                        <option>300</option>
-                        <option>320</option>
-                        <option>350</option>
-                        <option>370</option>
+                    <select class="form-control" name="concentration_strength" id="concentration_strength" onchange="this.form.submit();">
+                        <?php foreach($concentration_strength_options as $option) {
+                            $is_selected = $concentration_strength == $option ? ' selected ' : '';
+                            echo '<option name="concentration_strength"' . $is_selected . '  value="' . $option . '">' . $option . '</option>';
+                        }
+                        ?>
                     </select>
                     <small class="form-text text-muted">(mgl/cc or mgl/ml)</small>
                 </div>

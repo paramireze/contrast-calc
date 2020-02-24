@@ -41,4 +41,3 @@ function convert_weight(weight, weight_unit) {
     return weight_unit === "kgs" ?  (weight * kg) : (weight / kg);
 }
 
-
